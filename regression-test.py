@@ -161,10 +161,13 @@ def compare(reference, simulated, display_limit=-1):
                     displayed += 1
                 err = True
                 break
+            # Vensim only outputs constants in step 0, carry that value forward
+            if series[i] == '':
+                series[i] = series[i-1]
             ref = float(series[i])
             sim = float(simulated[n][i])
-            around_zero = isclose(ref, 0, abs_tol=3e-06) and isclose(sim, 0, abs_tol=1e-06)
-            if not around_zero and not isclose(ref, sim, rel_tol=1e-4):
+            around_zero = isclose(ref, 0, abs_tol=1e-04) and isclose(sim, 0, abs_tol=1e-04)
+            if not around_zero and not isclose(ref, sim, rel_tol=1e-3):
                 if display_limit >= 0 and displayed < display_limit:
                     log(ERROR, 'time %s mismatch in %s (%s != %s)', time[i], n, ref, sim)
                     displayed += 1
