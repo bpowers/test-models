@@ -1,4 +1,4 @@
-months	Average Input	Change in Average	delay 1	delay 2	delay 3	Delay Time	delay3 flow 1	delay3 flow 2	delay3 inflow	delay3 outflow	delay3 output	Input	smth 1	smth 2	smth 3	smth3 change 1	smth3 change 2	smth3 change 3	smth3 output	Trend in Input	trend output
+time	Average Input	Change in Average	delay 1	delay 2	delay 3	Delay Time	delay3 flow 1	delay3 flow 2	delay3 inflow	delay3 outflow	delay3 output	Input	smth 1	smth 2	smth 3	smth3 change 1	smth3 change 2	smth3 change 3	smth3 output	Trend in Input	trend output
 1	5	0	8.33333333333	8.33333333333	8.33333333333	5	5	5	5	5	5	5	5	5	5	0	0	0	5	0	0
 1.25	5	0	8.33333333333	8.33333333333	8.33333333333	5	5	5	5	5	5	5	5	5	5	0	0	0	5	0	0
 1.5	5	0	8.33333333333	8.33333333333	8.33333333333	5	5	5	5	5	5	5	5	5	5	0	0	0	5	0	0
