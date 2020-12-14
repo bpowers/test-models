@@ -229,12 +229,6 @@
                 <alias x="455" y="361" uid="26">
                     <of>delay</of>
                 </alias>
-                <connector uid="27" angle="241.32641981632688">
-                    <from>
-                        <alias uid="26"/>
-                    </from>
-                    <to>Outflow_DelayN</to>
-                </connector>
                 <connector uid="28" angle="65.208866057246297">
                     <from>Inflow_DelayN</from>
                     <to>Outflow_DelayN</to>
@@ -297,18 +291,6 @@
                 <alias x="903" y="252" uid="66">
                     <of>delay</of>
                 </alias>
-                <connector uid="67" angle="-235.3506629824588">
-                    <from>
-                        <alias uid="66"/>
-                    </from>
-                    <to>Outflow_Delay1I</to>
-                </connector>
-                <connector uid="68" angle="232.23580970115222">
-                    <from>
-                        <alias uid="66"/>
-                    </from>
-                    <to>Outflow_Delay3I</to>
-                </connector>
                 <connector uid="89" angle="90">
                     <from>DT</from>
                     <to>DT</to>

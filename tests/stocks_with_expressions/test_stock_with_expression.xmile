@@ -67,12 +67,6 @@
                     </pts>
                 </flow>
                 <stock name="teststock_2" x="389" y="231"/>
-                <connector uid="12" angle="90">
-                    <from>
-                        <alias uid="11"/>
-                    </from>
-                    <to>inflow_1</to>
-                </connector>
                 <connector uid="32" angle="90">
                     <from>DT</from>
                     <to>DT</to>

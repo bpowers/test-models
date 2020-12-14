@@ -99,12 +99,6 @@
                     <from>STOPTIME</from>
                     <to>Outflow_2</to>
                 </connector>
-                <connector uid="30" angle="232.20531133153895">
-                    <from>
-                        <alias uid="27"/>
-                    </from>
-                    <to>Outflow_2</to>
-                </connector>
                 <connector uid="54" angle="157.4777264405696">
                     <from>DT</from>
                     <to>DT</to>
