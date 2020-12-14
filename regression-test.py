@@ -105,8 +105,8 @@ def isclose(a,
         raise ValueError('method must be one of:'
                          ' "asymmetric", "strong", "weak", "average"')
 
-def slurp(file_name):
-    with open(file_name, 'r') as f:
+def slurp(file_name, encoding='utf-8'):
+    with open(file_name, 'r', encoding=encoding) as f:
         return f.read().strip()
 
 def load_csv(f, delimiter=','):
@@ -212,18 +212,21 @@ def run_test(cmd, limit, model_suffix, model_dir):
         count = 0
         ref = None
 
-        while ref is None and count < len(OUTPUT_FILES) :
+        while ref is None and count < len(OUTPUT_FILES):
             output_path = os.path.join(model_dir, OUTPUT_FILES[count])
 
-            if os.path.exists(output_path) :
-                ref = read_data(slurp(output_path))
+            if os.path.exists(output_path):
+                try:
+                    ref = read_data(slurp(output_path))
+                except UnicodeDecodeError:
+                    ref = read_data(slurp(output_path, 'latin-1'))
 
             count += 1
 
-        if ref is None :
+        if ref is None:
             log(ERROR, 'Could not find an expected result in directory %s', model_dir)
             err = True
-        else :
+        else:
             err |= compare(ref, sim, display_limit=limit)
 
     return err
