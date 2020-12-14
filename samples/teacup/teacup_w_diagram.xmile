@@ -1,68 +1,97 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<xmile xmlns="http://www.systemdynamics.org/XMILE" version="1.0" level="3">
+<xmile xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE" version="1.0">
+    <isee:prefs show_module_prefix="true" layer="model"/>
     <header>
-        <smile version="1.0"></smile>
-        <name>teacup</name>
-        <uuid>cfc4ea6e-9e04-4362-ab8f-ab10f8242797</uuid>
-        <vendor>SDLabs</vendor>
-        <product version="0.1">go-xmile</product>
+        <options namespace="std"/>
+        <vendor>Ventana Systems, xmutil</vendor>
+        <product lang="en">Vensim, xmutil</product>
     </header>
-    <sim_specs time_units="Time">
-        <start>0</start>
-        <stop>30</stop>
-        <dt>0.125</dt>
+    <sim_specs method="Euler" time_units="Minute" isee:sim_duration="0">
+        <start>0.000000</start>
+        <stop>30.000000</stop>
+        <dt>0.125000</dt>
     </sim_specs>
-    <dimensions></dimensions>
-    <model_units></model_units>
-    <equation_prefs xmlns="isee" order_by="module"></equation_prefs>
+    <model_units>
+        <unit name="Dollar">
+            <eqn>$</eqn>
+            <alias>Dollars</alias>
+            <alias>$s</alias>
+        </unit>
+        <unit name="Hour">
+            <alias>Hours</alias>
+        </unit>
+        <unit name="Month">
+            <alias>Months</alias>
+        </unit>
+        <unit name="Person">
+            <alias>People</alias>
+            <alias>Persons</alias>
+        </unit>
+        <unit name="Unit">
+            <alias>Units</alias>
+        </unit>
+        <unit name="Week">
+            <alias>Weeks</alias>
+        </unit>
+        <unit name="Year">
+            <alias>Years</alias>
+        </unit>
+        <unit name="Day">
+            <alias>Days</alias>
+        </unit>
+    </model_units>
+    <dimensions/>
     <model>
         <variables>
-            <stock name="teacup_temperature">
-                <eqn>180</eqn>
-                <non_negative></non_negative>
-                <outflow>heat_loss_to_room</outflow>
-                <units>degrees</units>
-            </stock>
-            <flow name="heat_loss_to_room">
-                <eqn>(teacup_temperature-room_temperature)/characteristic_time</eqn>
-                <non_negative></non_negative>
-                <units>deg/time</units>
-            </flow>
-            <aux name="characteristic_time">
-                <eqn>10</eqn>
-                <units>minutes</units>
-            </aux>
-            <aux name="room_temperature">
+            <aux name="Room Temperature">
+                <doc>	Put in a check to ensure the room temperature is not driven below absolute zero.</doc>
                 <eqn>70</eqn>
-                <units>degrees</units>
+                <units>Degrees Fahrenheit</units>
             </aux>
+            <flow name="Heat Loss to Room">
+                <doc>	This is the rate at which heat flows from the cup into the room. We can ignore it at this point.</doc>
+                <eqn>(Teacup_Temperature-Room_Temperature)/Characteristic_Time</eqn>
+                <units>Degrees Fahrenheit/Minute</units>
+            </flow>
+            <aux name="Characteristic Time">
+                <doc>	How long will it take the teacup to cool 1/e of the way to equilibrium?</doc>
+                <eqn>10</eqn>
+                <units>Minutes</units>
+            </aux>
+            <stock name="Teacup Temperature">
+                <doc>	The model is only valid for the liquid phase of tea. While the tea could theoretically freeze or boil off, we would want an error to be thrown in these cases so that the modeler can identify the issue and decide whether to expand the model.
+		Of course, this refers to standard sea-level conditions...</doc>
+                <outflow>Heat_Loss_to_Room</outflow>
+                <eqn>180</eqn>
+                <units>Degrees Fahrenheit</units>
+            </stock>
         </variables>
         <views>
-            <view scroll_x="0" scroll_y="0" zoom="200" page_cols="2" converter_size="medium">
-                <connector x="277" y="132" color="#FF007F" uid="0">
-                    <from>room_temperature</from>
-                    <to>heat_loss_to_room</to>
-                </connector>
-                <connector x="279" y="50" color="#FF007F" uid="1">
-                    <from>characteristic_time</from>
-                    <to>heat_loss_to_room</to>
-                </connector>
-                <connector x="154" y="80" color="#FF007F" uid="2">
-                    <from>teacup_temperature</from>
-                    <to>heat_loss_to_room</to>
-                </connector>
-                <stock x="132" y="97" color="blue" name="teacup_temperature"></stock>
-                <flow x="243" y="92" color="blue" name="heat_loss_to_room">
+            <view>
+                <stock name="Teacup_Temperature" x="207" y="181"/>
+                <flow name="Heat_Loss_to_Room" x="308" y="181">
                     <pts>
-                        <pt x="154" y="92"></pt>
-                        <pt x="332" y="92"></pt>
+                        <pt x="207" y="181"/>
+                        <pt x="379" y="181"/>
                     </pts>
                 </flow>
-                <aux x="285" y="43" color="blue" name="characteristic_time"></aux>
-                <aux x="283" y="139" color="blue" name="room_temperature"></aux>
-            </view>
-            <view name="interface" scroll_x="0" scroll_y="0" zoom="0" page_width="788" page_height="528">
-                <simulation_delay>0.1</simulation_delay>
+                <aux name="Room_Temperature" x="369" y="250"/>
+                <aux name="Characteristic_Time" x="308" y="120"/>
+                <connector uid="9" angle="270">
+                    <from>Characteristic_Time</from>
+                    <to>Heat_Loss_to_Room</to>
+                </connector>
+                <connector uid="10" angle="255.91572164677027">
+                    <from>Teacup_Temperature</from>
+                    <to>Heat_Loss_to_Room</to>
+                </connector>
+                <connector uid="11" angle="-204.29982152622131">
+                    <from>Room_Temperature</from>
+                    <to>Heat_Loss_to_Room</to>
+                </connector>
+                <connector uid="32" angle="90">
+                    <from>DT</from>
+                    <to>DT</to>
+                </connector>
             </view>
         </views>
     </model>
