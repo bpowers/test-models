@@ -56,7 +56,7 @@
                 </dimensions>
             </stock>
             <flow name="Inflow A">
-                <eqn>Rate_A[One_Dimensional_Subscript]</eqn>
+                <eqn>Rate_A</eqn>
                 <dimensions>
                     <dim name="One Dimensional Subscript"/>
                 </dimensions>
