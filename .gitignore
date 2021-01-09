@@ -6,6 +6,7 @@
 *.isdb
 *.py
 *.1mdl
+.~*
 editor.aud
 samples/pendulum/Untitled.cin
 
