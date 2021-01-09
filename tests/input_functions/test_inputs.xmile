@@ -59,7 +59,7 @@
                 <eqn>RAMP(1, 14, 17)</eqn>
             </aux>
             <aux name="Test Pulse">
-                <eqn>pulse(3, 2)</eqn>
+                <eqn>pulse(DT, 3, 2)</eqn>
             </aux>
         </variables>
         <views>
